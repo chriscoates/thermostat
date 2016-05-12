@@ -1,0 +1,50 @@
+body{
+  background-color: #ffb366;
+}
+
+.controls{
+  width: 500px;
+  margin: auto;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.icons{
+  color: white;
+  font-size: 30pt;
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+
+.icons:hover {
+  color: black;
+}
+
+.icons:visited {
+  color: white;
+}
+
+.outside-temp{
+  width: 500px;
+  margin: auto;
+  text-align: center;
+}
+
+#temperature{
+  color: white;
+  font-size: 100pt;
+}
+
+#current-city{
+  width: 200px;
+  margin: auto;
+}
+
+.right-spacing{
+  margin-right: 10px;
+}
+
+.left-spacing{
+  margin-left: 10px;
+}
