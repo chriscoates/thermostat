@@ -5,28 +5,34 @@ $(document).ready(function() {
   var thermostat = new Thermostat();
   updateTemperature();
 
+  function updateDisplays(){
+    updateTemperature()
+    updateDisplayColour()
+  }
+
+
   $('#temperature-up').click(function() {
     thermostat.up();
-    updateTemperature();
-    updateDisplayColour();
+    updateDisplays();
+    updateServer();
   });
 
   $('#temperature-down').click(function() {
     thermostat.down();
-    updateTemperature();
-    updateDisplayColour();
+    updateDisplays();
+    updateServer();
   });
 
   $('#temperature-reset').click(function() {
     thermostat.resetTemperature();
-    updateTemperature();
-    updateDisplayColour();
+    updateDisplays();
+    updateServer();
   });
 
   $('#powersaving').click(function() {
     thermostat.togglePowerSavingMode();
     if (thermostat.powerSavingMode) { $('#power-saving-status').text('ON') }
-      else { $('#power-saving-status').text('OFF') }
+    else { $('#power-saving-status').text('OFF') }
     updateTemperature();
   });
 
@@ -46,9 +52,10 @@ $(document).ready(function() {
     $('#temperature').text(thermostat.temperature);
   };
 
-    $('#current-city').change(function() {
+  $('#current-city').change(function() {
     var city = $('#current-city').val();
     displayWeather(city);
+    updateServer();
   });
 
   function displayWeather(city) {
@@ -59,4 +66,39 @@ $(document).ready(function() {
       $('#current-temperature').text(data.main.temp);
     });
   };
+
+  function getServerData() {
+    var url = 'http://localhost:4567/temperature';
+    $.ajax({
+      type: "GET",
+      url: url,
+      dataType: "html",
+      success: function(data){
+        thermostat = new Thermostat(data);
+        displayWeather();
+        updateDisplays();
+
+      },
+      error: function(){
+        thermostat = new Thermostat();
+        displayWeather();
+        updateDisplays();
+      }
+    });
+  }
+
+  function updateServer() {
+    var url = "http://localhost:4567/temperature?"
+    var tempparam = "temp="
+    var temp = thermostat.getCurrentTemperature();
+    var cityparam = "&city="
+    var city = $('#current-city').val();
+    var url = url + tempparam + temp + cityparam + city;
+    $.post(url);
+  }
+
+  getServerData();
+
+
+
 });
