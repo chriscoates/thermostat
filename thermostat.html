@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thermostat</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <section class="outside-temp">
+    <h3>Currently <span id="current-temperature">20.00</span> Outside</h3>
+    <select id="current-city" class="form-control">
+      <option disabled selected>Select a City</option>
+      <option value="2643741">London</option>
+      <option value="5106292">New York</option>
+      <option value="4339526">Paris</option>
+      <option value="1850147">Tokyo</option>
+      <option value="3333178">Nottingham</option>
+      <option value="2950157">Berlin</option>
+      <option value="5509403">Las Vegas</option>
+      <option value="289688">Qatar</option>
+      <option value="1282028">Maldives</option>
+      <option value="1619457">Bangkok</option>
+
+    </select>
+  </section>
+
+  <section class="controls">
+    <p>
+      <button id="temperature-up" class="right-spacing btn-link icons"><i class="glyphicon glyphicon-plus"> </i></button>
+      <button id="temperature-down" class="left-spacing btn-link icons"><i class="glyphicon glyphicon-minus"></i></button>
+
+      <h1 id="temperature"></h1>
+      Power Saving: <span id="power-saving-status"> ON </span>
+    </br>
+  </br>
+    <button id="powersaving" class="right-spacing btn-link icons"><i class="glyphicon glyphicon-off"></i></button>
+    <button id="temperature-reset" class="left-spacing btn-link icons"><i class="glyphicon glyphicon-repeat"></i></button>
+  </p>
+</section>
+
+<script src="src/thermostat.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="interface.js"></script>
+
+</body>
+</html>
